@@ -3,8 +3,8 @@ steps:
         name: gcr.io/cloud-builders/docker
         args:
             - build
-            - '-t'
-            - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA'
+            - -t
+            - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA
             - .
     -
     
@@ -12,20 +12,20 @@ steps:
         name: gcr.io/cloud-builders/docker
         args:
             - tag
-            - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA'
-            - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest'
+            - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA
+            - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest
             
     -
-        name: 'gcr.io/cloud-builders/docker'
+        name: gcr.io/cloud-builders/docker
         args:
             - push 
-            - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA'
+            - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA
     -
             
-        name: 'gcr.io/cloud-builders/docker'
+        name: gcr.io/cloud-builders/docker
         args:
             - push 
-            - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest'
+            - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest
             
    
     -
@@ -35,13 +35,13 @@ steps:
             - run
             - deploy
             - crud-op-$BRANCH_NAME
-            - '--image'
-            - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest'
-            - '--region'
+            - --image
+            - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest
+            - --region
             - us-central1
-            - '--platform'
+            - --platform
             - managed
-            - '--allow-unauthenticated'
+            - --allow-unauthenticated
 images:
-          - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA'
-          - 'gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest'
+          - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-$SHORT_SHA
+          - gcr.io/$PROJECT_ID/crud-op:cloudbuild-$BRANCH_NAME-latest
